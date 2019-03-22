@@ -18,7 +18,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     var url_string: String = """
-https://www.cas.chula.ac.th/cas/service.php?q=api%2FgetStudent&appid=th.ac.chula.eng.cp.mobileprog&appsecret=0a455d685fdf2dec0790817aaaea5096ad4aed64c72b6290e9aef693aa7c61583763eddadb1f26627b39e7d5180069db91833ef18a5d2973f997e9a916023fec&key=6031019821
+https://www.cas.chula.ac.th/cas/service.php?q=api%2FgetStudent&appid=th.ac.chula.eng.cp.mobileprog&appsecret=0a455d685fdf2dec0790817aaaea5096ad4aed64c72b6290e9aef693aa7c61583763eddadb1f26627b39e7d5180069db91833ef18a5d2973f997e9a916023fec&key=
 """
 
     override func viewDidLoad() {
@@ -28,7 +28,7 @@ https://www.cas.chula.ac.th/cas/service.php?q=api%2FgetStudent&appid=th.ac.chula
     }
     
     func searching () {
-        let url = URL(string: url_string)
+        let url = URL(string: url_string+self.textField.text!)
         if let url = url {
             let task = URLSession.shared.dataTask(with:url) { (data, response, error) in
                 if error != nil {
@@ -60,12 +60,12 @@ https://www.cas.chula.ac.th/cas/service.php?q=api%2FgetStudent&appid=th.ac.chula
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         print("didEndEditing")
-        if(self.textField.text == "6031019821") {
+//        if(self.textField.text == "6031019821") {
             searching()
             self.performSegue(withIdentifier: "showDetail", sender: self)
-        } else {
-            performSegue(withIdentifier: "showElection", sender: self);
-        }
+//        } else {
+//            performSegue(withIdentifier: "showElection", sender: self);
+//        }
 
     }
     

@@ -17,17 +17,12 @@ class TableViewController: UITableViewController {
     static var contentArr : [String : Any]?{
         didSet{
             print("is being set")
-//            print(type)
-//            print(info)
             if let contentArr = contentArr{
                 for (x,y) in contentArr  {
-//                    if let x = x , let y =y {
                         print(x,y)
-//                    }
                 }
             }
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
-
         }
     }
     
@@ -42,6 +37,7 @@ class TableViewController: UITableViewController {
         super.viewDidLoad()
         self.table.delegate = self
         self.table.dataSource = self
+        
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
 
         // Uncomment the following line to preserve selection between presentations
@@ -151,10 +147,7 @@ class TableViewController: UITableViewController {
                 }
 //            case 6:
 //            case 7:
-            default:
-                x = "NO CONTENT"
-                cell.textLabel?.text = x
-
+            default: break
             }
             return cell;
         }
